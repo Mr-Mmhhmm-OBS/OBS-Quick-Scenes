@@ -1,0 +1,109 @@
+html {
+    background-color: #242424;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#quick-scenes {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 0 auto;
+    min-height: 100%;
+    padding: 0.125em;
+    box-sizing:border-box;
+    align-content: flex-start;
+}
+
+    #quick-scenes button {
+        margin: 1px;
+        flex: 1 0 0;
+        height: 2.125em;
+    }
+
+#quick-scenes button > span{
+    white-space: nowrap;
+}
+
+.bottom-bar {
+    background-color: #3a393a;
+    padding: 0.25em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+
+h1, p, li, button {
+    user-select: none;
+}
+
+h1, p, li, button, textarea, input[type=text], select, span {
+    color: white;
+    font-weight: 100;
+    font-family: Calibri;
+}
+
+p, li, button, textarea {
+    font-size: 12px;
+}
+
+button {
+    display: block;
+    margin: 1px 0;
+    width: 100%;
+    background-color: #454545;
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+    outline: none;
+}
+
+    button:hover, button[selected] {
+        background-color: #787878;
+    }
+
+    button:disabled {
+        background-color: #2f2f2f;
+        color: #777;
+    }
+
+.menu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+    .menu > div {
+        margin: 10px;
+        padding: 10px;
+        background-color: #252525f6;
+        border: 1px solid black;
+        border-radius: 10px;
+        min-height: fit-content;
+    }
+
+    .menu button.close {
+        margin-top: auto;
+    }
+
+#edit-scenes ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    #edit-scenes ul li[scene-name]:after {
+        content: attr('scene-name');
+    }
