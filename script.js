@@ -1,3 +1,12 @@
+
+var max_profiles = 5;
+var profile = window.localStorage.getItem('profile');
+if (typeof profile === 'string' && profile.length > 0) {
+    profile = parseInt(profile);
+} else {
+    profile = 1;
+    window.localStorage.setItem('profile', profile);
+}
 var quick_scenes = [];
 
 const obs = new OBSWebSocket();
@@ -10,15 +19,32 @@ obs.on('ScenesChanged', (data) => {
 });
 
 window.onload = function () {
-    var value = window.localStorage.getItem("quick-scenes");
+    LoadProfile();
+
+    var $profile_select = $("#profile");
+    console.log(profile);
+    $profile_select.on('change', (e) => {
+        profile = parseInt(e.currentTarget.value);
+        window.localStorage.setItem('profile', profile);
+        LoadProfile();
+    });
+    for (var i = 1; i <= max_profiles; i++) {
+        $profile_select.append($("<option/>", { value: i, text: "Profile " + i, selected:profile===i }));
+    }
+};
+
+function LoadProfile() {
+    var value = window.localStorage.getItem("quick-scenes-" + profile);
     if (typeof value === 'string' && value.length > 0) {
         quick_scenes = JSON.parse(value);
+    } else {
+        quick_scenes = [];
     }
 
     obs.connect().then(() => {
         PopulateQuickScenes();
     });
-};
+}
 
 function EditScenes(enable) {
     $("#edit-scenes").css('display', (enable ? "" : "none"));
@@ -45,7 +71,7 @@ function EditScenes(enable) {
             }
         });
     } else {
-        window.localStorage.setItem("quick-scenes", JSON.stringify(quick_scenes));
+        window.localStorage.setItem("quick-scenes-"+profile, JSON.stringify(quick_scenes));
         PopulateQuickScenes();
     }
 }

@@ -34,7 +34,6 @@ main {
 
 .bottom-bar {
     background-color: #3a393a;
-    padding: 0.25em;
 }
 
 h1 {
@@ -47,19 +46,19 @@ h1, p, li, button {
     user-select: none;
 }
 
-h1, p, li, button, textarea, input[type=text], select, span {
+h1, p, li, button, textarea, input[type=text], select, span, label, option {
     color: white;
     font-weight: 100;
     font-family: Calibri;
 }
 
-p, li, button, textarea {
+p, li, button, textarea, input, option {
     font-size: 12px;
 }
 
-button {
+button, select {
     display: block;
-    margin: 1px 0;
+    margin: 2px 0;
     width: 100%;
     background-color: #454545;
     border: none;
